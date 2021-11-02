@@ -20,7 +20,7 @@ contract('Neetcoin', accounts => {
     it('should not mint any tokens to user account', async () => {
         let tokensToMint = web3.utils.toWei(web3.utils.toBN(coin));
         try {
-            await token.MintERC20(user, tokensToMint, { from: user });
+            await token.mint(user, tokensToMint, { from: user });
         } catch (e) {
             assert(e.message, 'error message must contain revert Ownable');
         }
