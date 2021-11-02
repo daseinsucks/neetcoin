@@ -10,8 +10,8 @@ contract('Neetcoin', accounts => {
 
     it('should mint 20 tokens to admin account', async () => {
         let adminBalance = await token.mint(admin, 20)
-        let requiredBalance = web3.utils.toWei("20")
-        assert.equal(adminBalance.toString, requiredBalance, "minting to admin completed successfully")
+        let requiredBalance = 20
+        assert.equal(adminBalance, requiredBalance, "minting to admin completed successfully")
     });
 
     it('should not mint any tokens to user account', async () => {
