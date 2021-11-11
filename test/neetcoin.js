@@ -5,6 +5,7 @@ contract('Neetcoin', accounts => {
     let coin = '20';
     const admin = accounts[0];
     const user = accounts[1];
+    const buyer = accounts[2];
     before(async () => {
         token = await Neetcoin.deployed();
     });
@@ -42,9 +43,9 @@ contract('Neetcoin', accounts => {
 
     it('should send 20 tokens from admin when 20 eth received', async () => {
         let tokensToGet = web3.utils.toWei("20")
-        const exchanging = await token.sell(user, tokensToGet, {value: tokensToGet});
-        let userBalanceAfterExchange= await token.balanceOf(user);
-        assert.equal(tokensToGet.toString(), userBalanceAfterExchange.toString(), 'exchange completed successfully');
+        const exchanging = await token.sell( {from: buyer, value: tokensToGet});
+        let buyerBalanceAfterExchange= await token.balanceOf(buyer);
+        assert.equal(tokensToGet.toString(), buyerBalanceAfterExchange.toString(), 'exchange completed successfully');
     });
 });
 
