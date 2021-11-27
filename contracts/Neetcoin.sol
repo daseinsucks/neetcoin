@@ -10,10 +10,6 @@ contract Neetcoin is ERC20, Ownable {
         _mint(account, amount);
     }
     
-      function send(address sender, address recipient, uint256  amount) public {
-        _transfer(sender, recipient, amount);
-    }
-    
      function sell() payable public {
       address whoToSend = msg.sender;
       uint256 ntcToMint = msg.value;
