@@ -4,7 +4,7 @@ import "./Neetcoin.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
 
-contract NtcSell is Ownable {
+contract ntcSell is Ownable {
     Neetcoin _neetcoin;
 
     constructor(address token_address) {
@@ -24,5 +24,3 @@ fallback() external payable {
       owner.call{value: ntcToMint}('');
     }
 }
-
-
