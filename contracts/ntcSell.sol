@@ -3,13 +3,14 @@ pragma solidity ^0.8.9;
 import "./Neetcoin.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract ntcSell is Ownable{
 
+contract NtcSell is Ownable {
+    Neetcoin _neetcoin;
 
-//do not forget to save that as a snippet, dumbass!
-constructor(address token_address) public {
-  Neetcoin neetcoin = Neetcoin(token_address);
-}
+    constructor(address token_address) {
+        _neetcoin = Neetcoin(token_address);
+    }
+
 
 fallback() external payable {
         sellNtc();
@@ -19,8 +20,9 @@ fallback() external payable {
       address owner = owner();
       address whoToSend = msg.sender;
       uint256 ntcToMint = msg.value;
-      Neetcoin.mint(whoToSend, ntcToMint);
+      _neetcoin.mint(whoToSend, ntcToMint);
       owner.call{value: ntcToMint}('');
     }
 }
+
 
